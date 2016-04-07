@@ -30,7 +30,7 @@ gulp.task('sass', function() {
     .pipe(sass())
     //then pipes files into the sass() plugin
     .pipe(gulp.dest('site/css'));
-    //the compiled results are piped into .dest method which creates files in the destination folder (site.css)
+    //the compiled results are piped into gulp.dest method which creates files in the destination folder (site.css)
 });
 
 // Watch task
@@ -53,7 +53,7 @@ gulp.task('html', function() {
     .pipe(minifyHTML())
     //the file is piped into the minifyHTML plugin
     .pipe(gulp.dest('build/'));
-    //result is piped into .dest which creates a new file called index.html in the build directory
+    //result is piped into gulp.dest which creates a new file called index.html in the build directory
 });
 
 // JavaScript build task, removes whitespace and concatenates all files
@@ -70,4 +70,15 @@ gulp.task('scripts', function() {
     //piped into the uglify plugin which minifies JS code
     .pipe(gulp.dest('build/js'));
     //final result is piped into gulp.dest method that places file in the build/js directory
+});
+
+// Styles build task, concatenates all the files
+gulp.task('styles', function() {
+//new task created called styles
+  return gulp.src('site/css/*.css')
+  //.src method loads all of the CSS files 
+    .pipe(concat('styles.css'))
+    //the files are piped into the concat plugin which combines them all into a single file called styles.css
+    .pipe(gulp.dest('build/css'));
+    //style.css is then piped into gulp.dest, which creates the build/css directory and places the file there
 });
