@@ -45,7 +45,7 @@ gulp.task('watch', function() {
 // Default task
 gulp.task('default', ['jshint', 'sass', 'watch']);
 
-// Minify HTML - removes white spaces, concats, and optimizes images
+// Minify index - removes white spaces, concats, and optimizes images
 gulp.task('html', function() {
 //new task created called html
   return gulp.src('site/index.html')
@@ -54,4 +54,20 @@ gulp.task('html', function() {
     //the file is piped into the minifyHTML plugin
     .pipe(gulp.dest('build/'));
     //result is piped into .dest which creates a new file called index.html in the build directory
+});
+
+// JavaScript build task, removes whitespace and concatenates all files
+gulp.task('scripts', function() {
+//new task created called scripts
+  return browserify('site/js/main.js')
+  // runs browserify on js files 
+    .bundle()
+    //concatenates files in correct order
+    .pipe(source('app.js'))
+    //all code in js file will end up in a single file called app.js
+    .pipe(buffer())
+    .pipe(uglify())
+    //piped into the uglify plugin which minifies JS code
+    .pipe(gulp.dest('build/js'));
+    //final result is piped into gulp.dest method that places file in the build/js directory
 });
