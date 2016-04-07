@@ -35,6 +35,9 @@ gulp.task('sass', function() {
 
 // Watch task
 gulp.task('watch', function() {
+//.task method creates a new task called watch
   gulp.watch('site/js/*.js', ['jshint']);
+  //gulp will watch all script files in site/js, run jshint task if any files changed
   gulp.watch('site/scss/*.scss', ['sass']);
+  //gulp will watch all Sass files in site/css, run sass task if any .scss files changed
 });
