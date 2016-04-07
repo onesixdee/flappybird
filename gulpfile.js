@@ -41,3 +41,6 @@ gulp.task('watch', function() {
   gulp.watch('site/scss/*.scss', ['sass']);
   //gulp will watch all Sass files in site/css, run sass task if any .scss files changed
 });
+
+// Default task
+gulp.task('default', ['jshint', 'sass', 'watch']);
