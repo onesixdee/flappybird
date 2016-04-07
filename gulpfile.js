@@ -82,3 +82,14 @@ gulp.task('styles', function() {
     .pipe(gulp.dest('build/css'));
     //style.css is then piped into gulp.dest, which creates the build/css directory and places the file there
 });
+
+// Image optimization task
+gulp.task('images', function() {
+//new task created  called images
+  return gulp.src('site/img/*')
+  //.src method lads all of the files in site/img
+    .pipe(imagemin())
+    //the images are piped into the imagemin plugin to be optimized
+    .pipe(gulp.dest('build/img'));
+    //results are piped into gulp.dest which places them into the destination directory, build/img
+});
