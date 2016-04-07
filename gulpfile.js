@@ -33,18 +33,6 @@ gulp.task('sass', function() {
     //the compiled results are piped into gulp.dest method which creates files in the destination folder (site.css)
 });
 
-// Watch task
-gulp.task('watch', function() {
-//.task method creates a new task called watch
-  gulp.watch('site/js/*.js', ['jshint']);
-  //gulp will watch all script files in site/js, run jshint task if any files changed
-  gulp.watch('site/scss/*.scss', ['sass']);
-  //gulp will watch all Sass files in site/css, run sass task if any .scss files changed
-});
-
-// Default task
-gulp.task('default', ['jshint', 'sass', 'watch']);
-
 // Minify index - removes white spaces, concats, and optimizes images
 gulp.task('html', function() {
 //new task created called html
@@ -93,3 +81,18 @@ gulp.task('images', function() {
     .pipe(gulp.dest('build/img'));
     //results are piped into gulp.dest which places them into the destination directory, build/img
 });
+
+// Watch task
+gulp.task('watch', function() {
+//.task method creates a new task called watch
+  gulp.watch('site/js/*.js', ['jshint']);
+  //gulp will watch all script files in site/js, run jshint task if any files changed
+  gulp.watch('site/scss/*.scss', ['sass']);
+  //gulp will watch all Sass files in site/css, run sass task if any .scss files changed
+});
+
+// Default task
+gulp.task('default', ['jshint', 'sass', 'watch']);
+
+// Build task
+gulp.task('build', ['jshint', 'sass', 'html', 'scripts', 'styles', 'images']);
