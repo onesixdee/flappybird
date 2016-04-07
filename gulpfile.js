@@ -44,3 +44,14 @@ gulp.task('watch', function() {
 
 // Default task
 gulp.task('default', ['jshint', 'sass', 'watch']);
+
+// Minify HTML - removes white spaces, concats, and optimizes images
+gulp.task('html', function() {
+//new task created called html
+  return gulp.src('site/index.html')
+  //that loads the index.html
+    .pipe(minifyHTML())
+    //the file is piped into the minifyHTML plugin
+    .pipe(gulp.dest('build/'));
+    //result is piped into .dest which creates a new file called index.html in the build directory
+});
